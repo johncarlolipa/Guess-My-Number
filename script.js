@@ -18,9 +18,9 @@
 
 //CLICK EVENTS
 
-let secretNumber = Math.trunc(Math.random() * 21);
-let score = 20;//auto number
-let highScore = 0;
+let secretNumber = Math.trunc(Math.random() * 21);// generate ng number from 0-20
+let score = 20;//auto number, dito rin makikita kung ilang attempt 
+let highScore = 0; //score na nakuha, 
 
 const displayMessage = function(message){
     document.querySelector('.message').textContent = message;
@@ -49,7 +49,7 @@ document.querySelector('.check').addEventListener('click', function(){
     //when guess is wrong
     } else if (guess !== secretNumber){
         if (score > 1) {
-            displayMessage(guess > secretNumber ? "Too High!" : "Too Low");
+            displayMessage(guess > secretNumber ? "Too High!" : "Too Low");//kapag yung guess ay mataas sa secret number, display too high; vice-versa
             score--;//babawasan nito yung score
             document.querySelector('.score').textContent = score;//babaguhin nito yung nakadisplay na score
             } else {
@@ -60,13 +60,15 @@ document.querySelector('.check').addEventListener('click', function(){
     }    
 });
 
-document.querySelector('.again').addEventListener('click', function(){
-    score = 20;
-    secretNumber = Math.trunc(Math.random() * 21);
-    displayMessage("Start guessing...");
-    document.querySelector('.score').textContent = score;
-    document.querySelector('.number').textContent = "?";
-    document.querySelector('.guess').value = '';
-    document.querySelector('body').style.backgroundColor = '#222';
+
+//restarting the game
+document.querySelector('.again').addEventListener('click', function(){//once again is click, eto mangyayari
+    score = 20; //reset score sa 20
+    secretNumber = Math.trunc(Math.random() * 21);//generate ulit ng secret number
+    displayMessage("Start guessing...");//display message ay magiging start guessing
+    document.querySelector('.score').textContent = score; // balik yung text content na score sa 20
+    document.querySelector('.number').textContent = "?"; // balik sa ? yung secret number
+    document.querySelector('.guess').value = '';// guess number ay balik sa blank
+    document.querySelector('body').style.backgroundColor = '#222'; // balik sa black ang bg
     document.querySelector('.number').style.width = '15rem';
 });
